@@ -7,7 +7,7 @@ contract TimeLockWalletFactory is CloneFactory {
     TimeLockWallet public newWallet;
 
     mapping(address => address[]) wallets;
-    address masterContract;
+    address public masterContract;
 
     event Created(
         address indexed wallet,

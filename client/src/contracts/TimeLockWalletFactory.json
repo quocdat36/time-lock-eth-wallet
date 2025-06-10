@@ -1,0 +1,3317 @@
+{
+  "contractName": "TimeLockWalletFactory",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_masterContract",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "wallet",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "creator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "releaseTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "createdAt",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Created",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "masterContract",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "newWallet",
+      "outputs": [
+        {
+          "internalType": "contract TimeLockWallet",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "releaseTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "createNewWallet",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function",
+      "payable": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "getWalletList",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_masterContract\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"releaseTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"createdAt\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Created\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"releaseTime\",\"type\":\"uint256\"}],\"name\":\"createNewWallet\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"getWalletList\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"masterContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"newWallet\",\"outputs\":[{\"internalType\":\"contract TimeLockWallet\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/TimeLockWalletFactory.sol\":\"TimeLockWalletFactory\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c\",\"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08\",\"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC\"]},\"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0xf12dfbe97e6276980b83d2830bb0eb75e0cf4f3e626c2471137f82158ae6a0fc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b3a849c2d95e85463909e5b5c920b13e7a11216ca14127085e16d22b9379d52a\",\"dweb:/ipfs/QmUg3CZDbCCcQdroEpexBy5ZFd5vD1UWijWQq9qHZjtJNQ\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x28911e614500ae7c607a432a709d35da25f3bc5ddc8bd12b278b66358070c0ea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://256c8c8af5eb072bc473226ab2b2187149b8fc04f5f4a4820db22527f5ce8e3c\",\"dweb:/ipfs/QmRvi5BhnL7Rxf85KrJhwM6RRhukm4tzoctRdgQEheNyiN\"]},\"project:/contracts/CloneFactory.sol\":{\"keccak256\":\"0xc2490efcdab39b8b0025638ce6ba5c28c04f3285efc8fd76e9bb6dc97b809f87\",\"urls\":[\"bzz-raw://7456be6e134bb552931e1de6ca72a08d1d687ec2b28f1a99de2caec2dc95a237\",\"dweb:/ipfs/Qmc8pNMj5hjiB8TCEAUSyUqouUCxGc6UYeKw8jXX6SEYZh\"]},\"project:/contracts/TimeLockWallet.sol\":{\"keccak256\":\"0x9c8cb3a5df5d49d2b16a6a00a351281ae1a09079d5bed6260b61c4968c03c4d0\",\"urls\":[\"bzz-raw://3ddbbd5d8c7e96beb63388ae03a6336031e7c09a4a6af8b61a75b99d1c16266c\",\"dweb:/ipfs/QmYoToW3HmARR6wkncRUooUjEtb5N3AXPQjCRiAmqak3ZX\"]},\"project:/contracts/TimeLockWalletFactory.sol\":{\"keccak256\":\"0xca0c97f50d24fe0641a9e759e2c632eaeafdf674eabdb4968cfc2eafa11d5613\",\"urls\":[\"bzz-raw://2045bfeb1e89e4caffbd2ca66ef1e8af5265e06053f8b8c253df812458cef682\",\"dweb:/ipfs/QmQoU33fAFkhaKC9Bt8m1iqg1TCptLq3w3D3bsKgTspnYK\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516104023803806104028339818101604052602081101561003357600080fd5b5051600280546001600160a01b0319166001600160a01b0390921691909117905561039f806100636000396000f3fe60806040526004361061003f5760003560e01c80634a8671f1146100445780634a883746146100755780635e9beda6146100bf578063cd446e2214610142575b600080fd5b34801561005057600080fd5b50610059610157565b604080516001600160a01b039092168252519081900360200190f35b6100ab6004803603606081101561008b57600080fd5b506001600160a01b03813581169160208101359091169060400135610166565b604080519115158252519081900360200190f35b3480156100cb57600080fd5b506100f2600480360360208110156100e257600080fd5b50356001600160a01b0316610292565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561012e578181015183820152602001610116565b505050509050019250505060405180910390f35b34801561014e57600080fd5b50610059610308565b6000546001600160a01b031681565b6002546000908190610180906001600160a01b0316610317565b60408051630145e33360e01b81526001600160a01b038881166004830152878116602483015233604483015242606483015260848201879052915192935090831691630145e3339160a48082019260009290919082900301818387803b1580156101e957600080fd5b505af11580156101fd573d6000803e3d6000fd5b5050506001600160a01b0380861660008181526001602081815260408084208054938401815584529281902090910180549487166001600160a01b0319909516851790558151338152908101889052428183015234606082015290519193507f14d5db8c1f746c7adcbcd13cf8945dd2ac6ad58be52380b8c4933c876f76e1bf919081900360800190a3506001949350505050565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156102fc57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116102de575b50505050509050919050565b6002546001600160a01b031681565b6000808260601b9050604051733d602d80600a3d3981f3363d3d373d3d3d363d7360601b81528160148201526e5af43d82803e903d91602b57fd5bf360881b60288201526037816000f094935050505056fea264697066735822122030bce7d012410dc849d7327a691538147438d1a6d4bb83dae7e37de6585bc47964736f6c634300060c0033",
+  "deployedBytecode": "0x60806040526004361061003f5760003560e01c80634a8671f1146100445780634a883746146100755780635e9beda6146100bf578063cd446e2214610142575b600080fd5b34801561005057600080fd5b50610059610157565b604080516001600160a01b039092168252519081900360200190f35b6100ab6004803603606081101561008b57600080fd5b506001600160a01b03813581169160208101359091169060400135610166565b604080519115158252519081900360200190f35b3480156100cb57600080fd5b506100f2600480360360208110156100e257600080fd5b50356001600160a01b0316610292565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561012e578181015183820152602001610116565b505050509050019250505060405180910390f35b34801561014e57600080fd5b50610059610308565b6000546001600160a01b031681565b6002546000908190610180906001600160a01b0316610317565b60408051630145e33360e01b81526001600160a01b038881166004830152878116602483015233604483015242606483015260848201879052915192935090831691630145e3339160a48082019260009290919082900301818387803b1580156101e957600080fd5b505af11580156101fd573d6000803e3d6000fd5b5050506001600160a01b0380861660008181526001602081815260408084208054938401815584529281902090910180549487166001600160a01b0319909516851790558151338152908101889052428183015234606082015290519193507f14d5db8c1f746c7adcbcd13cf8945dd2ac6ad58be52380b8c4933c876f76e1bf919081900360800190a3506001949350505050565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156102fc57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116102de575b50505050509050919050565b6002546001600160a01b031681565b6000808260601b9050604051733d602d80600a3d3981f3363d3d373d3d3d363d7360601b81528160148201526e5af43d82803e903d91602b57fd5bf360881b60288201526037816000f094935050505056fea264697066735822122030bce7d012410dc849d7327a691538147438d1a6d4bb83dae7e37de6585bc47964736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "91:1360:10:-:0;;;476:95;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;476:95:10;531:14;:32;;-1:-1:-1;;;;;;531:32:10;-1:-1:-1;;;;;531:32:10;;;;;;;;;91:1360;;;-1:-1:-1;91:1360:10;;",
+  "deployedSourceMap": "91:1360:10:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;145:31;;;;;;;;;;;;;:::i;:::-;;;;-1:-1:-1;;;;;145:31:10;;;;;;;;;;;;;;579:712;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;579:712:10;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;1299:149;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1299:149:10;-1:-1:-1;;;;;1299:149:10;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;229:29;;;;;;;;;;;;;:::i;145:31::-;;;-1:-1:-1;;;;;145:31:10;;:::o;579:712::-;807:14;;718:4;;;;795:27;;-1:-1:-1;;;;;807:14:10;795:11;:27::i;:::-;836:157;;;-1:-1:-1;;;836:157:10;;-1:-1:-1;;;;;836:157:10;;;;;;;;;;;;;;916:10;836:157;;;;941:15;836:157;;;;;;;;;;;;735:88;;-1:-1:-1;836:19:10;;;;;;:157;;;;;-1:-1:-1;;836:157:10;;;;;;;;-1:-1:-1;836:19:10;:157;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;;;1006:20:10;;;;;;;:7;:20;;;;;;;;:50;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;1006:50:10;;;;;;;1074:187;;1160:10;1074:187;;;;;;;;1211:15;1074:187;;;;1241:9;1074:187;;;;;;1006:20;;-1:-1:-1;1074:187:10;;;;;;;;;;-1:-1:-1;1279:4:10;;579:712;-1:-1:-1;;;;579:712:10:o;1299:149::-;-1:-1:-1;;;;;1426:14:10;;;;;;:7;:14;;;;;;;;;1419:21;;;;;;;;;;;;;;;;;1385:16;;1419:21;;;1426:14;1419:21;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1419:21:10;;;;;;;;;;;;;;;;;;;;;;;1299:149;;;:::o;229:29::-;;;-1:-1:-1;;;;;229:29:10;;:::o;131:592:7:-;186:14;213:19;243:6;235:15;;213:37;;304:4;298:11;-1:-1:-1;;;348:5:7;323:130;492:11;485:4;478:5;474:16;467:37;-1:-1:-1;;;554:4:7;547:5;543:16;518:141;700:4;693:5;690:1;683:22;673:32;270:446;-1:-1:-1;;;;270:446:7:o",
+  "source": "pragma solidity ^0.6.0;\r\n\r\nimport \"./TimeLockWallet.sol\";\r\nimport \"./CloneFactory.sol\";\r\n\r\ncontract TimeLockWalletFactory is CloneFactory {\r\n    TimeLockWallet public newWallet;\r\n\r\n    mapping(address => address[]) wallets;\r\n    address public masterContract;\r\n\r\n    event Created(\r\n        address indexed wallet,\r\n        address indexed beneficiary,\r\n        address creator,\r\n        uint256 releaseTime,\r\n        uint256 createdAt,\r\n        uint256 amount\r\n    );\r\n\r\n    constructor(address _masterContract) public {\r\n        masterContract = _masterContract;\r\n    }\r\n\r\n    function createNewWallet(\r\n        IERC20 token,\r\n        address beneficiary,\r\n        uint256 releaseTime\r\n    ) public payable returns (bool) {\r\n        TimeLockWallet timeLockWallet =\r\n            TimeLockWallet(createClone(masterContract));\r\n\r\n        timeLockWallet.init(\r\n            token,\r\n            beneficiary,\r\n            msg.sender,\r\n            block.timestamp,\r\n            releaseTime\r\n        );\r\n\r\n        wallets[beneficiary].push(address(timeLockWallet));\r\n\r\n        emit Created(\r\n            address(timeLockWallet),\r\n            beneficiary,\r\n            msg.sender,\r\n            releaseTime,\r\n            block.timestamp,\r\n            msg.value\r\n        );\r\n        return true;\r\n    }\r\n\r\n    function getWalletList(address owner)\r\n        public\r\n        view\r\n        returns (address[] memory)\r\n    {\r\n        return wallets[owner];\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\Admin\\Documents\\Blockchain\\time-lock-eth-wallet\\contracts\\TimeLockWalletFactory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/TimeLockWalletFactory.sol",
+    "exportedSymbols": {
+      "TimeLockWalletFactory": [
+        1982
+      ]
+    },
+    "id": 1983,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1872,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "absolutePath": "project:/contracts/TimeLockWallet.sol",
+        "file": "./TimeLockWallet.sol",
+        "id": 1873,
+        "nodeType": "ImportDirective",
+        "scope": 1983,
+        "sourceUnit": 1871,
+        "src": "27:30:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "project:/contracts/CloneFactory.sol",
+        "file": "./CloneFactory.sol",
+        "id": 1874,
+        "nodeType": "ImportDirective",
+        "scope": 1983,
+        "sourceUnit": 1537,
+        "src": "59:28:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1875,
+              "name": "CloneFactory",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1536,
+              "src": "125:12:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_CloneFactory_$1536",
+                "typeString": "contract CloneFactory"
+              }
+            },
+            "id": 1876,
+            "nodeType": "InheritanceSpecifier",
+            "src": "125:12:10"
+          }
+        ],
+        "contractDependencies": [
+          1536
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1982,
+        "linearizedBaseContracts": [
+          1982,
+          1536
+        ],
+        "name": "TimeLockWalletFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "4a8671f1",
+            "id": 1878,
+            "mutability": "mutable",
+            "name": "newWallet",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 1982,
+            "src": "145:31:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+              "typeString": "contract TimeLockWallet"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 1877,
+              "name": "TimeLockWallet",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1870,
+              "src": "145:14:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                "typeString": "contract TimeLockWallet"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 1883,
+            "mutability": "mutable",
+            "name": "wallets",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 1982,
+            "src": "185:37:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+              "typeString": "mapping(address => address[])"
+            },
+            "typeName": {
+              "id": 1882,
+              "keyType": {
+                "id": 1879,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "193:7:10",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "185:29:10",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+                "typeString": "mapping(address => address[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "id": 1880,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "204:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "id": 1881,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "204:9:10",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "functionSelector": "cd446e22",
+            "id": 1885,
+            "mutability": "mutable",
+            "name": "masterContract",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 1982,
+            "src": "229:29:10",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 1884,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "229:7:10",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 1899,
+            "name": "Created",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1898,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1887,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "wallet",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1899,
+                  "src": "291:22:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1886,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "291:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1889,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "beneficiary",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1899,
+                  "src": "324:27:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1888,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "324:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1891,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "creator",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1899,
+                  "src": "362:15:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1890,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "362:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1893,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "releaseTime",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1899,
+                  "src": "388:19:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1892,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "388:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1895,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "createdAt",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1899,
+                  "src": "418:17:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1894,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "418:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1897,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1899,
+                  "src": "446:14:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1896,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "446:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "280:187:10"
+            },
+            "src": "267:201:10"
+          },
+          {
+            "body": {
+              "id": 1908,
+              "nodeType": "Block",
+              "src": "520:51:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1906,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 1904,
+                      "name": "masterContract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1885,
+                      "src": "531:14:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 1905,
+                      "name": "_masterContract",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1901,
+                      "src": "548:15:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "531:32:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 1907,
+                  "nodeType": "ExpressionStatement",
+                  "src": "531:32:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1909,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1902,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1901,
+                  "mutability": "mutable",
+                  "name": "_masterContract",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1909,
+                  "src": "488:23:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1900,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "488:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "487:25:10"
+            },
+            "returnParameters": {
+              "id": 1903,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "520:0:10"
+            },
+            "scope": 1982,
+            "src": "476:95:10",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1967,
+              "nodeType": "Block",
+              "src": "724:567:10",
+              "statements": [
+                {
+                  "assignments": [
+                    1921
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1921,
+                      "mutability": "mutable",
+                      "name": "timeLockWallet",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 1967,
+                      "src": "735:29:10",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                        "typeString": "contract TimeLockWallet"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 1920,
+                        "name": "TimeLockWallet",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 1870,
+                        "src": "735:14:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                          "typeString": "contract TimeLockWallet"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1927,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 1924,
+                            "name": "masterContract",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1885,
+                            "src": "807:14:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 1923,
+                          "name": "createClone",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1517,
+                          "src": "795:11:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$_t_address_$",
+                            "typeString": "function (address) returns (address)"
+                          }
+                        },
+                        "id": 1925,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "795:27:10",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 1922,
+                      "name": "TimeLockWallet",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1870,
+                      "src": "780:14:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_TimeLockWallet_$1870_$",
+                        "typeString": "type(contract TimeLockWallet)"
+                      }
+                    },
+                    "id": 1926,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "780:43:10",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                      "typeString": "contract TimeLockWallet"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "735:88:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 1931,
+                        "name": "token",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1911,
+                        "src": "870:5:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IERC20_$935",
+                          "typeString": "contract IERC20"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1932,
+                        "name": "beneficiary",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1913,
+                        "src": "890:11:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1933,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "916:3:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1934,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "916:10:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1935,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -4,
+                          "src": "941:5:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 1936,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "941:15:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1937,
+                        "name": "releaseTime",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1915,
+                        "src": "971:11:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_contract$_IERC20_$935",
+                          "typeString": "contract IERC20"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 1928,
+                        "name": "timeLockWallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1921,
+                        "src": "836:14:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                          "typeString": "contract TimeLockWallet"
+                        }
+                      },
+                      "id": 1930,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "init",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1639,
+                      "src": "836:19:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_contract$_IERC20_$935_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (contract IERC20,address,address,uint256,uint256) external"
+                      }
+                    },
+                    "id": 1938,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "836:157:10",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1939,
+                  "nodeType": "ExpressionStatement",
+                  "src": "836:157:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 1946,
+                            "name": "timeLockWallet",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1921,
+                            "src": "1040:14:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                              "typeString": "contract TimeLockWallet"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                              "typeString": "contract TimeLockWallet"
+                            }
+                          ],
+                          "id": 1945,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1032:7:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 1944,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1032:7:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": null,
+                              "typeString": null
+                            }
+                          }
+                        },
+                        "id": 1947,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1032:23:10",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 1940,
+                          "name": "wallets",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1883,
+                          "src": "1006:7:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+                            "typeString": "mapping(address => address[] storage ref)"
+                          }
+                        },
+                        "id": 1942,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 1941,
+                          "name": "beneficiary",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1913,
+                          "src": "1014:11:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1006:20:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 1943,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1006:25:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_address_$returns$__$",
+                        "typeString": "function (address)"
+                      }
+                    },
+                    "id": 1948,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1006:50:10",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1949,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1006:50:10"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "id": 1953,
+                            "name": "timeLockWallet",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1921,
+                            "src": "1104:14:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                              "typeString": "contract TimeLockWallet"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                              "typeString": "contract TimeLockWallet"
+                            }
+                          ],
+                          "id": 1952,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1096:7:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_address_$",
+                            "typeString": "type(address)"
+                          },
+                          "typeName": {
+                            "id": 1951,
+                            "name": "address",
+                            "nodeType": "ElementaryTypeName",
+                            "src": "1096:7:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": null,
+                              "typeString": null
+                            }
+                          }
+                        },
+                        "id": 1954,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1096:23:10",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1955,
+                        "name": "beneficiary",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1913,
+                        "src": "1134:11:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1956,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "1160:3:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1957,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1160:10:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1958,
+                        "name": "releaseTime",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1915,
+                        "src": "1185:11:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1959,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -4,
+                          "src": "1211:5:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 1960,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1211:15:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1961,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -15,
+                          "src": "1241:3:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1962,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1241:9:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 1950,
+                      "name": "Created",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1899,
+                      "src": "1074:7:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,address,address,uint256,uint256,uint256)"
+                      }
+                    },
+                    "id": 1963,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1074:187:10",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1964,
+                  "nodeType": "EmitStatement",
+                  "src": "1069:192:10"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "74727565",
+                    "id": 1965,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1279:4:10",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 1919,
+                  "id": 1966,
+                  "nodeType": "Return",
+                  "src": "1272:11:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "4a883746",
+            "id": 1968,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createNewWallet",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1916,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1911,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1968,
+                  "src": "614:12:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$935",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1910,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 935,
+                    "src": "614:6:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$935",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1913,
+                  "mutability": "mutable",
+                  "name": "beneficiary",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1968,
+                  "src": "637:19:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1912,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "637:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1915,
+                  "mutability": "mutable",
+                  "name": "releaseTime",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1968,
+                  "src": "667:19:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1914,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "667:7:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "603:90:10"
+            },
+            "returnParameters": {
+              "id": 1919,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1918,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1968,
+                  "src": "718:4:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1917,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "718:4:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "717:6:10"
+            },
+            "scope": 1982,
+            "src": "579:712:10",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1980,
+              "nodeType": "Block",
+              "src": "1408:40:10",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 1976,
+                      "name": "wallets",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1883,
+                      "src": "1426:7:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
+                        "typeString": "mapping(address => address[] storage ref)"
+                      }
+                    },
+                    "id": 1978,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 1977,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1970,
+                      "src": "1434:5:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1426:14:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                      "typeString": "address[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 1975,
+                  "id": 1979,
+                  "nodeType": "Return",
+                  "src": "1419:21:10"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "5e9beda6",
+            "id": 1981,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getWalletList",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 1971,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1970,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1981,
+                  "src": "1322:13:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1969,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1322:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1321:15:10"
+            },
+            "returnParameters": {
+              "id": 1975,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1974,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 1981,
+                  "src": "1385:16:10",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1972,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1385:7:10",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 1973,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1385:9:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1384:18:10"
+            },
+            "scope": 1982,
+            "src": "1299:149:10",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1983,
+        "src": "91:1360:10"
+      }
+    ],
+    "src": "0:1453:10"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/TimeLockWalletFactory.sol",
+      "exportedSymbols": {
+        "TimeLockWalletFactory": [
+          1982
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 1872,
+        "name": "PragmaDirective",
+        "src": "0:23:10"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1871,
+          "absolutePath": "project:/contracts/TimeLockWallet.sol",
+          "file": "./TimeLockWallet.sol",
+          "scope": 1983,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 1873,
+        "name": "ImportDirective",
+        "src": "27:30:10"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1537,
+          "absolutePath": "project:/contracts/CloneFactory.sol",
+          "file": "./CloneFactory.sol",
+          "scope": 1983,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 1874,
+        "name": "ImportDirective",
+        "src": "59:28:10"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "contractDependencies": [
+            1536
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            1982,
+            1536
+          ],
+          "name": "TimeLockWalletFactory",
+          "scope": 1983
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "CloneFactory",
+                  "referencedDeclaration": 1536,
+                  "type": "contract CloneFactory"
+                },
+                "id": 1875,
+                "name": "UserDefinedTypeName",
+                "src": "125:12:10"
+              }
+            ],
+            "id": 1876,
+            "name": "InheritanceSpecifier",
+            "src": "125:12:10"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "4a8671f1",
+              "mutability": "mutable",
+              "name": "newWallet",
+              "overrides": null,
+              "scope": 1982,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "contract TimeLockWallet",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "TimeLockWallet",
+                  "referencedDeclaration": 1870,
+                  "type": "contract TimeLockWallet"
+                },
+                "id": 1877,
+                "name": "UserDefinedTypeName",
+                "src": "145:14:10"
+              }
+            ],
+            "id": 1878,
+            "name": "VariableDeclaration",
+            "src": "145:31:10"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "mutability": "mutable",
+              "name": "wallets",
+              "overrides": null,
+              "scope": 1982,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => address[])",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(address => address[])"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 1879,
+                    "name": "ElementaryTypeName",
+                    "src": "193:7:10"
+                  },
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "address[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1880,
+                        "name": "ElementaryTypeName",
+                        "src": "204:7:10"
+                      }
+                    ],
+                    "id": 1881,
+                    "name": "ArrayTypeName",
+                    "src": "204:9:10"
+                  }
+                ],
+                "id": 1882,
+                "name": "Mapping",
+                "src": "185:29:10"
+              }
+            ],
+            "id": 1883,
+            "name": "VariableDeclaration",
+            "src": "185:37:10"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "functionSelector": "cd446e22",
+              "mutability": "mutable",
+              "name": "masterContract",
+              "overrides": null,
+              "scope": 1982,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 1884,
+                "name": "ElementaryTypeName",
+                "src": "229:7:10"
+              }
+            ],
+            "id": 1885,
+            "name": "VariableDeclaration",
+            "src": "229:29:10"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "Created"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "wallet",
+                      "overrides": null,
+                      "scope": 1899,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1886,
+                        "name": "ElementaryTypeName",
+                        "src": "291:7:10"
+                      }
+                    ],
+                    "id": 1887,
+                    "name": "VariableDeclaration",
+                    "src": "291:22:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "beneficiary",
+                      "overrides": null,
+                      "scope": 1899,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1888,
+                        "name": "ElementaryTypeName",
+                        "src": "324:7:10"
+                      }
+                    ],
+                    "id": 1889,
+                    "name": "VariableDeclaration",
+                    "src": "324:27:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "creator",
+                      "overrides": null,
+                      "scope": 1899,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1890,
+                        "name": "ElementaryTypeName",
+                        "src": "362:7:10"
+                      }
+                    ],
+                    "id": 1891,
+                    "name": "VariableDeclaration",
+                    "src": "362:15:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "releaseTime",
+                      "overrides": null,
+                      "scope": 1899,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1892,
+                        "name": "ElementaryTypeName",
+                        "src": "388:7:10"
+                      }
+                    ],
+                    "id": 1893,
+                    "name": "VariableDeclaration",
+                    "src": "388:19:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "createdAt",
+                      "overrides": null,
+                      "scope": 1899,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1894,
+                        "name": "ElementaryTypeName",
+                        "src": "418:7:10"
+                      }
+                    ],
+                    "id": 1895,
+                    "name": "VariableDeclaration",
+                    "src": "418:17:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 1899,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1896,
+                        "name": "ElementaryTypeName",
+                        "src": "446:7:10"
+                      }
+                    ],
+                    "id": 1897,
+                    "name": "VariableDeclaration",
+                    "src": "446:14:10"
+                  }
+                ],
+                "id": 1898,
+                "name": "ParameterList",
+                "src": "280:187:10"
+              }
+            ],
+            "id": 1899,
+            "name": "EventDefinition",
+            "src": "267:201:10"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "overrides": null,
+              "scope": 1982,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_masterContract",
+                      "overrides": null,
+                      "scope": 1909,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1900,
+                        "name": "ElementaryTypeName",
+                        "src": "488:7:10"
+                      }
+                    ],
+                    "id": 1901,
+                    "name": "VariableDeclaration",
+                    "src": "488:23:10"
+                  }
+                ],
+                "id": 1902,
+                "name": "ParameterList",
+                "src": "487:25:10"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1903,
+                "name": "ParameterList",
+                "src": "520:0:10"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1885,
+                              "type": "address",
+                              "value": "masterContract"
+                            },
+                            "id": 1904,
+                            "name": "Identifier",
+                            "src": "531:14:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1901,
+                              "type": "address",
+                              "value": "_masterContract"
+                            },
+                            "id": 1905,
+                            "name": "Identifier",
+                            "src": "548:15:10"
+                          }
+                        ],
+                        "id": 1906,
+                        "name": "Assignment",
+                        "src": "531:32:10"
+                      }
+                    ],
+                    "id": 1907,
+                    "name": "ExpressionStatement",
+                    "src": "531:32:10"
+                  }
+                ],
+                "id": 1908,
+                "name": "Block",
+                "src": "520:51:10"
+              }
+            ],
+            "id": 1909,
+            "name": "FunctionDefinition",
+            "src": "476:95:10"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "functionSelector": "4a883746",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "createNewWallet",
+              "overrides": null,
+              "scope": 1982,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "overrides": null,
+                      "scope": 1968,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract IERC20",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IERC20",
+                          "referencedDeclaration": 935,
+                          "type": "contract IERC20"
+                        },
+                        "id": 1910,
+                        "name": "UserDefinedTypeName",
+                        "src": "614:6:10"
+                      }
+                    ],
+                    "id": 1911,
+                    "name": "VariableDeclaration",
+                    "src": "614:12:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "beneficiary",
+                      "overrides": null,
+                      "scope": 1968,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1912,
+                        "name": "ElementaryTypeName",
+                        "src": "637:7:10"
+                      }
+                    ],
+                    "id": 1913,
+                    "name": "VariableDeclaration",
+                    "src": "637:19:10"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "releaseTime",
+                      "overrides": null,
+                      "scope": 1968,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1914,
+                        "name": "ElementaryTypeName",
+                        "src": "667:7:10"
+                      }
+                    ],
+                    "id": 1915,
+                    "name": "VariableDeclaration",
+                    "src": "667:19:10"
+                  }
+                ],
+                "id": 1916,
+                "name": "ParameterList",
+                "src": "603:90:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1968,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 1917,
+                        "name": "ElementaryTypeName",
+                        "src": "718:4:10"
+                      }
+                    ],
+                    "id": 1918,
+                    "name": "VariableDeclaration",
+                    "src": "718:4:10"
+                  }
+                ],
+                "id": 1919,
+                "name": "ParameterList",
+                "src": "717:6:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        1921
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "timeLockWallet",
+                          "overrides": null,
+                          "scope": 1967,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "contract TimeLockWallet",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "TimeLockWallet",
+                              "referencedDeclaration": 1870,
+                              "type": "contract TimeLockWallet"
+                            },
+                            "id": 1920,
+                            "name": "UserDefinedTypeName",
+                            "src": "735:14:10"
+                          }
+                        ],
+                        "id": 1921,
+                        "name": "VariableDeclaration",
+                        "src": "735:29:10"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "contract TimeLockWallet",
+                          "type_conversion": true
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1870,
+                              "type": "type(contract TimeLockWallet)",
+                              "value": "TimeLockWallet"
+                            },
+                            "id": 1922,
+                            "name": "Identifier",
+                            "src": "780:14:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "address",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1517,
+                                  "type": "function (address) returns (address)",
+                                  "value": "createClone"
+                                },
+                                "id": 1923,
+                                "name": "Identifier",
+                                "src": "795:11:10"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1885,
+                                  "type": "address",
+                                  "value": "masterContract"
+                                },
+                                "id": 1924,
+                                "name": "Identifier",
+                                "src": "807:14:10"
+                              }
+                            ],
+                            "id": 1925,
+                            "name": "FunctionCall",
+                            "src": "795:27:10"
+                          }
+                        ],
+                        "id": 1926,
+                        "name": "FunctionCall",
+                        "src": "780:43:10"
+                      }
+                    ],
+                    "id": 1927,
+                    "name": "VariableDeclarationStatement",
+                    "src": "735:88:10"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_contract$_IERC20_$935",
+                                  "typeString": "contract IERC20"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "init",
+                              "referencedDeclaration": 1639,
+                              "type": "function (contract IERC20,address,address,uint256,uint256) external"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1921,
+                                  "type": "contract TimeLockWallet",
+                                  "value": "timeLockWallet"
+                                },
+                                "id": 1928,
+                                "name": "Identifier",
+                                "src": "836:14:10"
+                              }
+                            ],
+                            "id": 1930,
+                            "name": "MemberAccess",
+                            "src": "836:19:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1911,
+                              "type": "contract IERC20",
+                              "value": "token"
+                            },
+                            "id": 1931,
+                            "name": "Identifier",
+                            "src": "870:5:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1913,
+                              "type": "address",
+                              "value": "beneficiary"
+                            },
+                            "id": 1932,
+                            "name": "Identifier",
+                            "src": "890:11:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address payable"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": -15,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 1933,
+                                "name": "Identifier",
+                                "src": "916:3:10"
+                              }
+                            ],
+                            "id": 1934,
+                            "name": "MemberAccess",
+                            "src": "916:10:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "timestamp",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": -4,
+                                  "type": "block",
+                                  "value": "block"
+                                },
+                                "id": 1935,
+                                "name": "Identifier",
+                                "src": "941:5:10"
+                              }
+                            ],
+                            "id": 1936,
+                            "name": "MemberAccess",
+                            "src": "941:15:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1915,
+                              "type": "uint256",
+                              "value": "releaseTime"
+                            },
+                            "id": 1937,
+                            "name": "Identifier",
+                            "src": "971:11:10"
+                          }
+                        ],
+                        "id": 1938,
+                        "name": "FunctionCall",
+                        "src": "836:157:10"
+                      }
+                    ],
+                    "id": 1939,
+                    "name": "ExpressionStatement",
+                    "src": "836:157:10"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "referencedDeclaration": null,
+                              "type": "function (address)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "address[] storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 1883,
+                                      "type": "mapping(address => address[] storage ref)",
+                                      "value": "wallets"
+                                    },
+                                    "id": 1940,
+                                    "name": "Identifier",
+                                    "src": "1006:7:10"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 1913,
+                                      "type": "address",
+                                      "value": "beneficiary"
+                                    },
+                                    "id": 1941,
+                                    "name": "Identifier",
+                                    "src": "1014:11:10"
+                                  }
+                                ],
+                                "id": 1942,
+                                "name": "IndexAccess",
+                                "src": "1006:20:10"
+                              }
+                            ],
+                            "id": 1943,
+                            "name": "MemberAccess",
+                            "src": "1006:25:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "address",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                                      "typeString": "contract TimeLockWallet"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "address",
+                                      "type": null
+                                    },
+                                    "id": 1944,
+                                    "name": "ElementaryTypeName",
+                                    "src": "1032:7:10"
+                                  }
+                                ],
+                                "id": 1945,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "1032:7:10"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1921,
+                                  "type": "contract TimeLockWallet",
+                                  "value": "timeLockWallet"
+                                },
+                                "id": 1946,
+                                "name": "Identifier",
+                                "src": "1040:14:10"
+                              }
+                            ],
+                            "id": 1947,
+                            "name": "FunctionCall",
+                            "src": "1032:23:10"
+                          }
+                        ],
+                        "id": 1948,
+                        "name": "FunctionCall",
+                        "src": "1006:50:10"
+                      }
+                    ],
+                    "id": 1949,
+                    "name": "ExpressionStatement",
+                    "src": "1006:50:10"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1899,
+                              "type": "function (address,address,address,uint256,uint256,uint256)",
+                              "value": "Created"
+                            },
+                            "id": 1950,
+                            "name": "Identifier",
+                            "src": "1074:7:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": false,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "address",
+                              "type_conversion": true
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_contract$_TimeLockWallet_$1870",
+                                      "typeString": "contract TimeLockWallet"
+                                    }
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "type": "type(address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "name": "address",
+                                      "type": null
+                                    },
+                                    "id": 1951,
+                                    "name": "ElementaryTypeName",
+                                    "src": "1096:7:10"
+                                  }
+                                ],
+                                "id": 1952,
+                                "name": "ElementaryTypeNameExpression",
+                                "src": "1096:7:10"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1921,
+                                  "type": "contract TimeLockWallet",
+                                  "value": "timeLockWallet"
+                                },
+                                "id": 1953,
+                                "name": "Identifier",
+                                "src": "1104:14:10"
+                              }
+                            ],
+                            "id": 1954,
+                            "name": "FunctionCall",
+                            "src": "1096:23:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1913,
+                              "type": "address",
+                              "value": "beneficiary"
+                            },
+                            "id": 1955,
+                            "name": "Identifier",
+                            "src": "1134:11:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address payable"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": -15,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 1956,
+                                "name": "Identifier",
+                                "src": "1160:3:10"
+                              }
+                            ],
+                            "id": 1957,
+                            "name": "MemberAccess",
+                            "src": "1160:10:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1915,
+                              "type": "uint256",
+                              "value": "releaseTime"
+                            },
+                            "id": 1958,
+                            "name": "Identifier",
+                            "src": "1185:11:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "timestamp",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": -4,
+                                  "type": "block",
+                                  "value": "block"
+                                },
+                                "id": 1959,
+                                "name": "Identifier",
+                                "src": "1211:5:10"
+                              }
+                            ],
+                            "id": 1960,
+                            "name": "MemberAccess",
+                            "src": "1211:15:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": -15,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 1961,
+                                "name": "Identifier",
+                                "src": "1241:3:10"
+                              }
+                            ],
+                            "id": 1962,
+                            "name": "MemberAccess",
+                            "src": "1241:9:10"
+                          }
+                        ],
+                        "id": 1963,
+                        "name": "FunctionCall",
+                        "src": "1074:187:10"
+                      }
+                    ],
+                    "id": 1964,
+                    "name": "EmitStatement",
+                    "src": "1069:192:10"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 1919
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "74727565",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "bool",
+                          "type": "bool",
+                          "value": "true"
+                        },
+                        "id": 1965,
+                        "name": "Literal",
+                        "src": "1279:4:10"
+                      }
+                    ],
+                    "id": 1966,
+                    "name": "Return",
+                    "src": "1272:11:10"
+                  }
+                ],
+                "id": 1967,
+                "name": "Block",
+                "src": "724:567:10"
+              }
+            ],
+            "id": 1968,
+            "name": "FunctionDefinition",
+            "src": "579:712:10"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "functionSelector": "5e9beda6",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getWalletList",
+              "overrides": null,
+              "scope": 1982,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "owner",
+                      "overrides": null,
+                      "scope": 1981,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1969,
+                        "name": "ElementaryTypeName",
+                        "src": "1322:7:10"
+                      }
+                    ],
+                    "id": 1970,
+                    "name": "VariableDeclaration",
+                    "src": "1322:13:10"
+                  }
+                ],
+                "id": 1971,
+                "name": "ParameterList",
+                "src": "1321:15:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 1981,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "address[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 1972,
+                            "name": "ElementaryTypeName",
+                            "src": "1385:7:10"
+                          }
+                        ],
+                        "id": 1973,
+                        "name": "ArrayTypeName",
+                        "src": "1385:9:10"
+                      }
+                    ],
+                    "id": 1974,
+                    "name": "VariableDeclaration",
+                    "src": "1385:16:10"
+                  }
+                ],
+                "id": 1975,
+                "name": "ParameterList",
+                "src": "1384:18:10"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 1975
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "address[] storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1883,
+                              "type": "mapping(address => address[] storage ref)",
+                              "value": "wallets"
+                            },
+                            "id": 1976,
+                            "name": "Identifier",
+                            "src": "1426:7:10"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1970,
+                              "type": "address",
+                              "value": "owner"
+                            },
+                            "id": 1977,
+                            "name": "Identifier",
+                            "src": "1434:5:10"
+                          }
+                        ],
+                        "id": 1978,
+                        "name": "IndexAccess",
+                        "src": "1426:14:10"
+                      }
+                    ],
+                    "id": 1979,
+                    "name": "Return",
+                    "src": "1419:21:10"
+                  }
+                ],
+                "id": 1980,
+                "name": "Block",
+                "src": "1408:40:10"
+              }
+            ],
+            "id": 1981,
+            "name": "FunctionDefinition",
+            "src": "1299:149:10"
+          }
+        ],
+        "id": 1982,
+        "name": "ContractDefinition",
+        "src": "91:1360:10"
+      }
+    ],
+    "id": 1983,
+    "name": "SourceUnit",
+    "src": "0:1453:10"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {
+    "2020": {
+      "events": {},
+      "links": {},
+      "address": "0x40D895b4708289B2c9D430556d23176AD96B0930",
+      "transactionHash": "0x3fa0d8f49ab77a59379fe873f9fb5fe6f6079052bc701bc7def61ac0e61e1a99"
+    },
+    "2025": {
+      "events": {},
+      "links": {},
+      "address": "0x3ea61D081e7Df520Cc7B9a464A3d617304454e32",
+      "transactionHash": "0x7d204af28e9031b288310e2630aa70a54f11510bfda215cf7650ec4fece41726"
+    }
+  },
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-06-10T08:52:46.369Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
-import walletFactory from '../proxies/WalletFactory';
+import WalletFactory from '../proxies/WalletFactory';
 import Wallet from '../proxies/Wallet';
 import tokenInstance from '../proxies/Token';
 import renderNotification from '../utils/notification-handler';
+
+console.log("[Create.jsx] Imported WalletFactory:", WalletFactory);
+console.log("[Create.jsx] Imported tokenInstance:", tokenInstance);
+console.log("[Create.jsx] Imported Wallet function:", Wallet);
+console.log("[Create.jsx] Imported renderNotification:", renderNotification);
 
 let web3;
 
@@ -46,7 +51,7 @@ class Topup extends Component {
 
   updateWalletsList = async (receiver) => {
     const sender = await web3.eth.getCoinbase();
-    const walletList = await walletFactory.methods.getWalletList(receiver).call({ from: sender });
+    const walletList = await WalletFactory.methods.getWalletList(receiver).call({ from: sender });
 
     const renderData = walletList.map((wallet, i) => (
       <option value={wallet} >{wallet}</option>
@@ -79,15 +84,15 @@ class Topup extends Component {
   render() {
     return (
 
-      <div class="container center" >
+      <div className="container center" >
 
-        <div class="row">
-          < div class="container" >
-            <div class="container">
+        <div className="row">
+          < div className="container" >
+            <div className="container">
               <h5 style={{ padding: "30px 0px 0px 10px" }}>Topup Wallet</h5>
-              <form class="" onSubmit={this.onTopUpWallet}>
-                <label class="left">Beneficiary Address</label><input id="receiver" placeholder="Receiver Address" type="text" class="validate" name="receiver" onChange={this.receiverChangeHandler} /><br /><br />
-                <label class="left">Wallet Address</label><select className="browser-default" value={this.state.wallet || this.state.wallets[0]} onChange={this.selectHandler}>
+              <form className="" onSubmit={this.onTopUpWallet}>
+                <label className="left">Beneficiary Address</label><input id="receiver" placeholder="Receiver Address" type="text" className="validate" name="receiver" onChange={this.receiverChangeHandler} /><br /><br />
+                <label className="left">Wallet Address</label><select className="browser-default" value={this.state.wallet || this.state.wallets[0]} onChange={this.selectHandler}>
                   <option value="" disabled selected>Select wallet</option>
                   {this.state.wallets}
                 </select><br /><br />

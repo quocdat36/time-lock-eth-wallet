@@ -1,6 +1,7 @@
 pragma solidity ^0.6.0;
 
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract TimeLockWallet {
     using SafeERC20 for IERC20;
@@ -70,6 +71,27 @@ contract TimeLockWallet {
     function releaseTime() public view virtual returns (uint256) {
         return _releaseTime;
     }
+
+    
+    // ==================================================
+    // ===== BẠN SẼ THÊM HÀM MỚI VÀO ĐÂY (HOẶC GẦN ĐÂY) =====
+    // ==================================================
+    /**
+     * @notice Allows an external account (e.g., the creator or any approved address)
+     * to deposit ERC20 tokens into this timelock wallet.
+     * The caller must have approved this contract to spend tokens on their behalf.
+     * @param amount The amount of tokens to deposit.
+     */
+    function depositTokens(uint256 amount) external {
+        require(address(_token) != address(0), "TimeLockWallet: token not set"); // Đảm bảo token đã được init
+        require(amount > 0, "TimeLockWallet: amount must be greater than zero");
+        // Người gọi (msg.sender) phải approve cho contract này (address(this)) được quyền rút 'amount' token từ họ.
+        // Hàm token() trả về instance IERC20 của _token.
+        require(token().allowance(msg.sender, address(this)) >= amount, "TimeLockWallet: Token allowance too low");
+        token().safeTransferFrom(msg.sender, address(this), amount);
+    }
+    // ==================================================
+    // ==================================================
 
     /**
      * @notice Transfers tokens held by timelock to beneficiary.

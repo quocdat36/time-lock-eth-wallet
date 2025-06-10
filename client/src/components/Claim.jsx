@@ -1,8 +1,14 @@
+import tokenInstance from '../proxies/Token'; // Đảm bảo dòng này có
 import React, { Component } from 'react';
 import Web3 from 'web3';
 import WalletFactory from '../proxies/WalletFactory';
 import Wallet from '../proxies/Wallet';
 import renderNotification from '../utils/notification-handler';
+
+console.log("[Create.jsx] Imported WalletFactory:", WalletFactory);
+console.log("[Create.jsx] Imported tokenInstance:", tokenInstance);
+console.log("[Create.jsx] Imported Wallet function:", Wallet);
+console.log("[Create.jsx] Imported renderNotification:", renderNotification);
 
 let web3;
 
@@ -60,15 +66,15 @@ class Claim extends Component {
 
         return (
           <tr key={wallet}>
-            <td class="center">{wallet}</td>
-            <td class="center">{creator}</td>
-            <td class="center">{createdDateTime}</td>
-            <td class="center">{releaseDateTime}</td>
-            <td class="center">{eth}</td>
-            <td class="center">{ashToken}</td>
+            <td className="center">{wallet}</td>
+            <td className="center">{creator}</td>
+            <td className="center">{createdDateTime}</td>
+            <td className="center">{releaseDateTime}</td>
+            <td className="center">{eth}</td>
+            <td className="center">{ashToken}</td>
 
-            <td class="center"><button type="submit" className="custom-btn login-btn" onClick={this.onWithdrawEther.bind(this, walletInstance, sender)}>Withdraw Ether</button></td>
-            <td class="center"><button type="submit" className="custom-btn login-btn" onClick={this.onWithdrawToken.bind(this, walletInstance, sender)}>Withdraw Token</button></td>
+            <td className="center"><button type="submit" className="custom-btn login-btn" onClick={this.onWithdrawEther.bind(this, walletInstance, sender)}>Withdraw Ether</button></td>
+            <td className="center"><button type="submit" className="custom-btn login-btn" onClick={this.onWithdrawToken.bind(this, walletInstance, sender)}>Withdraw Token</button></td>
           </tr>
         );
       }
@@ -84,24 +90,24 @@ class Claim extends Component {
   render() {
     return (
 
-      <div class="container " class="col s12 m6 offset-m3 l4 offset-l4 z-depth-6 card-panel">
+      <div className="container " className="col s12 m6 offset-m3 l4 offset-l4 z-depth-6 card-panel">
 
-        <h4 class="center">Claim Funds</h4>
+        <h4 className="center">Claim Funds</h4>
 
-        <table id='requests' class="responsive-table striped" >
+        <table id='requests' className="responsive-table striped" >
           <thead>
             <tr>
-              <th key='wallet' class="center">Wallet</th>
-              <th key='from' class="center">From</th>
-              <th key='age' class="center">Created Time</th>
-              <th key='unlockin' class="center">Release Time</th>
-              <th key='ether' class="center">Ether</th>
-              <th key='token' class="center">ASH Token</th>
-              <th key='withdrawEther' class="center">Withdraw Ether</th>
-              <th key='withdrawToken' class="center">Withdraw Token</th>
+              <th key='wallet' className="center">Wallet</th>
+              <th key='from' className="center">From</th>
+              <th key='age' className="center">Created Time</th>
+              <th key='unlockin' className="center">Release Time</th>
+              <th key='ether' className="center">Ether</th>
+              <th key='token' className="center">ASH Token</th>
+              <th key='withdrawEther' className="center">Withdraw Ether</th>
+              <th key='withdrawToken' className="center">Withdraw Token</th>
             </tr>
           </thead>
-          <tbody class="striped highlight">
+          <tbody className="striped highlight">
             {this.state.wallets}
           </tbody>
         </table>

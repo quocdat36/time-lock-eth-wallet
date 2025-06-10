@@ -6,6 +6,13 @@ import Create from "./components/Create";
 import Topup from "./components/Topup";
 import Claim from "./components/Claim";
 
+console.log("[App.js] BEFORE CLASS - Value of Create:", Create);
+console.log("[App.js] BEFORE CLASS - Type of Create:", typeof Create);
+console.log("[App.js] BEFORE CLASS - Value of Topup:", Topup);
+console.log("[App.js] BEFORE CLASS - Type of Topup:", typeof Topup);
+console.log("[App.js] BEFORE CLASS - Value of Claim:", Claim);
+console.log("[App.js] BEFORE CLASS - Type of Claim:", typeof Claim);
+
 class App extends Component {
 
   constructor() {
@@ -34,15 +41,21 @@ class App extends Component {
   }
 
   render() {
+    console.log("[App.js] INSIDE RENDER - Value of Create:", Create);
+    console.log("[App.js] INSIDE RENDER - Type of Create:", typeof Create);
+    console.log("[App.js] INSIDE RENDER - Value of Topup:", Topup);
+    console.log("[App.js] INSIDE RENDER - Type of Topup:", typeof Topup);
+    console.log("[App.js] INSIDE RENDER - Value of Claim:", Claim);
+    console.log("[App.js] INSIDE RENDER - Type of Claim:", typeof Claim);
     return (
       <Router>
         {/* {this.initWeb3()} */}
         <div >
-          <ReactNotification />
+          {/* <ReactNotification /> */}
           <nav style={{ padding: '0px 30px 0px 30px' }}>
-            <div class="nav-wrapper" >
-              <a href="/create" class="brand-logo left">Time Locked Wallet</a>
-              <ul class="right hide-on-med-and-down 10" >
+            <div className="nav-wrapper" >
+              <a href="/create" className="brand-logo left">Time Locked Wallet</a>
+              <ul className="right hide-on-med-and-down 10" >
                 <div>
                   <li> <Link to="/create">Create Wallet</Link> </li>
                   <li> <Link to="/topup">Topup Wallet</Link></li>
