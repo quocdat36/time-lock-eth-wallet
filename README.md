@@ -1,161 +1,245 @@
-# Time Locked Wallet Project
+# Time Locked Wallet - Ví Khóa Thời Gian (ETH & ERC20)
 
-Dự án này triển khai một hệ thống ví khóa thời gian cho token ERC20, cho phép người dùng khóa token cho một người thụ hưởng cho đến một thời điểm nhất định trong tương lai. Dự án bao gồm các smart contract Solidity và một giao diện front-end React.
+Dự án này triển khai một hệ thống "Ví Khóa Thời Gian" trên blockchain Ethereum. Nó cho phép người dùng tạo ra các ví có khả năng giữ Ether và token ERC20 (cụ thể là AshToken trong ví dụ này), và chỉ cho phép người thụ hưởng được chỉ định rút tài sản sau một thời điểm nhất định trong tương lai.
 
-## Cấu trúc Dự án
+Dự án bao gồm:
+*   **Smart Contracts (Solidity):** Được viết bằng Solidity và sử dụng Truffle Suite để biên dịch, triển khai và kiểm thử.
+    *   `AshToken.sol`: Một token ERC20 đơn giản để làm ví dụ.
+    *   `TimeLockWallet.sol`: Contract mẫu (implementation) cho các ví khóa thời gian.
+    *   `TimeLockWalletFactory.sol`: Factory contract để tạo ra các bản sao (clone) của `TimeLockWallet` một cách tiết kiệm gas, sử dụng EIP-1167 (thông qua `CloneFactory.sol`).
+    *   `CloneFactory.sol`: Thư viện để tạo minimal proxy contract.
+*   **Giao diện Người dùng (Front-end):** Được xây dựng bằng React (sử dụng Create React App, có thể đã được tùy chỉnh bằng `craco`) để tương tác với các smart contract.
 
--   `/contracts`: Chứa các smart contract Solidity (AshToken, TimeLockWallet, TimeLockWalletFactory, CloneFactory).
--   `/migrations`: Chứa các script để triển khai smart contract lên blockchain.
--   `/client`: Chứa ứng dụng front-end React.
--   `/build/contracts`: Chứa các file artifact (ABI, bytecode) sau khi biên dịch contract.
--   `truffle-config.js`: File cấu hình cho Truffle.
--   `package.json`: Quản lý dependencies cho phần smart contract (Truffle).
--   `client/package.json`: Quản lý dependencies cho phần front-end (React).
+## Các Chức Năng Chính
 
-## Điều kiện tiên quyết
+*   **Tạo Ví Khóa Thời Gian (Create Wallet):**
+    *   Chỉ định người thụ hưởng (beneficiary).
+    *   Đặt thời gian mở khóa (release time) trong tương lai.
+    *   Gửi kèm Ether và/hoặc AshToken vào ví (các giao dịch này xảy ra sau khi ví được tạo).
+*   **Nạp Thêm vào Ví (Topup Wallet):**
+    *   Nạp thêm Ether hoặc AshToken vào một ví khóa thời gian đã tồn tại.
+*   **Rút Tiền/Token (Claim Funds):**
+    *   Chỉ người thụ hưởng mới có thể rút.
+    *   Chỉ có thể rút sau khi thời gian mở khóa đã đến.
+    *   Rút riêng Ether và AshToken.
 
-Trước khi bắt đầu, đảm bảo bạn đã cài đặt các phần mềm sau:
+## Yêu Cầu Hệ Thống
 
-1.  **Node.js và npm:** Tải từ [nodejs.org](https://nodejs.org/). Nên sử dụng phiên bản LTS (ví dụ: v18.x, v20.x). Tránh các phiên bản Node.js quá mới (như v22+) nếu gặp vấn đề tương thích.
-2.  **Git:** Tải từ [git-scm.com](https://git-scm.com/).
-3.  **Truffle CLI:** Cài đặt toàn cục: `npm install -g truffle`
-4.  **Ganache:**
-    *   **Ganache UI (Khuyến nghị cho giao diện đồ họa):** Tải từ [trufflesuite.com/ganache/](https://trufflesuite.com/ganache/)
-    *   Hoặc **Ganache CLI (Dòng lệnh):** `npm install -g ganache` (hoặc `ganache-cli` cho phiên bản cũ).
-5.  **MetaMask:** Extension cho trình duyệt (Chrome, Firefox, Edge) từ [metamask.io](https://metamask.io/).
+*   [Node.js](https://nodejs.org/) (phiên bản 18.x hoặc 20.x LTS được khuyến nghị. Node v22 có thể yêu cầu `NODE_OPTIONS=--openssl-legacy-provider` cho một số công cụ)
+*   [npm](https://www.npmjs.com/) (thường đi kèm với Node.js)
+*   [Truffle Suite](https://www.trufflesuite.com/truffle) (cài đặt toàn cục): `npm install -g truffle`
+*   [Ganache](https://www.trufflesuite.com/ganache) (GUI hoặc CLI) cho blockchain cục bộ.
+*   [MetaMask](https://metamask.io/) extension cho trình duyệt.
 
-## Các bước Thiết lập và Chạy Dự án
+## Cài đặt và Chạy Dự Án
 
-### Phần 1: Thiết lập Smart Contracts (Back-end)
+**1. Clone Repository:**
+   ```bash
+   git clone https://github.com/ten_cua_ban/time-lock-eth-wallet.git # << THAY BẰNG URL REPO CỦA BẠN
+   cd time-lock-eth-wallet
 
-1.  **Clone Repository (Nếu cần):**
-    ```bash
-    git clone <URL_REPOSITORY_CUA_BAN>
-    cd time-lock-eth-wallet
-    ```
 
-2.  **Cài đặt Dependencies cho Smart Contracts:**
-    Trong thư mục gốc của dự án (`time-lock-eth-wallet`):
-    ```bash
-    npm install
-    npm uninstall @openzeppelin/contracts # Đảm bảo gỡ bản cũ nếu có
-    npm install @openzeppelin/contracts@3.4.2 # Hoặc phiên bản 3.x.x phù hợp với Solidity 0.6.x
-    ```
-    *Lưu ý: Nếu `npm audit` báo lỗi sau khi cài đặt, KHÔNG chạy `npm audit fix --force` vì nó có thể cập nhật OpenZeppelin lên phiên bản không tương thích.*
+2. Thiết lập Phần Smart Contracts (Back-end):
 
-3.  **Cấu hình Truffle (`truffle-config.js`):**
-    Đảm bảo file `truffle-config.js` được cấu hình đúng, đặc biệt là:
-    *   `networks.development.port`: (ví dụ: `8545`)
-    *   `compilers.solc.version`: (ví dụ: `^0.6.0`)
-    *   `compilers.solc.settings.evmVersion`: (ví dụ: `petersburg`)
+Điều hướng vào thư mục gốc của dự án.
 
-4.  **Khởi chạy Ganache:**
-    *   **Ganache UI:** Mở ứng dụng, tạo/mở workspace, vào Settings -> Server và đặt **PORT NUMBER** thành giá trị đã cấu hình trong `truffle-config.js` (ví dụ: `8545`).
-    *   **Ganache CLI:** Mở một terminal mới và chạy `ganache --port 8545` (thay `8545` bằng port của bạn). Để terminal này chạy.
+Cài đặt dependencies:
+bash npm install # Cài đặt phiên bản OpenZeppelin Contracts tương thích với Solidity 0.6.x npm install @openzeppelin/contracts@3.4.2 --save
+Lưu ý: Nếu npm audit báo lỗi, KHÔNG chạy npm audit fix --force vì nó có thể cập nhật các package lên phiên bản không tương thích.
 
-5.  **Biên dịch Smart Contracts:**
-    Trong terminal ở thư mục gốc dự án:
-    ```bash
-    truffle compile
-    ```
-    *Kiểm tra output, chỉ nên có cảnh báo SPDX.*
+Cấu hình Ganache:
+* Mở Ganache (GUI hoặc CLI).
+* Đảm bảo nó đang chạy ở Port 8545.
+* Đặt Network ID / Chain ID thành 1337 (hoặc một giá trị nhất quán bạn chọn).
+* (Nếu dùng Ganache UI, sau khi thay đổi cài đặt, hãy khởi động lại Workspace).
+* (Nếu dùng Ganache CLI, chạy: ganache --port 8545 --networkId 1337)
 
-6.  **Chuẩn bị Migration Scripts:**
-    *   Đảm bảo các file script trong thư mục `/migrations` được sắp xếp đúng thứ tự (ví dụ: `1_initial_migration.js`, `2_deploy_contracts.js`, `3_deploy_factory.js`).
-    *   Trong `contracts/TimeLockWalletFactory.sol`, đảm bảo biến `masterContract` được khai báo là `public`: `address public masterContract;`. Nếu sửa, chạy lại `truffle compile`.
+Cấu hình Truffle:
+Mở truffle-config.js và đảm bảo phần networks.development khớp với cài đặt Ganache của bạn:
+javascript development: { host: "127.0.0.1", port: 8545, network_id: "1337", // Nên khớp với Ganache và MetaMask },
+Và phần compilers.solc.version là ^0.6.0.
 
-7.  **Triển khai Smart Contracts:**
-    ```bash
-    truffle migrate --network development --reset
-    ```
-    *Theo dõi output để đảm bảo tất cả các contract được triển khai thành công và ghi lại các địa chỉ contract nếu cần.*
+Biên dịch Smart Contracts:
+bash truffle compile
 
-### Phần 2: Thiết lập Giao diện Front-end (React)
+Triển khai Smart Contracts lên Ganache:
+bash truffle migrate --network development --reset
 
-1.  **Điều hướng vào thư mục `client`:**
-    Từ thư mục gốc dự án:
-    ```bash
-    cd client
-    ```
+3. Thiết lập Phần Giao diện Người dùng (Front-end):
 
-2.  **Cài đặt Dependencies cho Front-end:**
-    ```bash
-    npm install
-    npm install process # Để khắc phục lỗi "process is not defined"
-    npm install --save-dev cross-env # Để đặt NODE_OPTIONS dễ dàng (tùy chọn)
-    ```
+Điều hướng vào thư mục client:
+bash cd client
 
-3.  **Sao chép Contract Artifacts (ABI):**
-    *   Tạo thư mục `client/src/contracts` (hoặc `client/src/abis`).
-    *   Sao chép các file JSON artifact cần thiết từ thư mục `/build/contracts` (của dự án gốc) vào thư mục `client/src/contracts/` vừa tạo. Các file quan trọng:
-        *   `AshToken.json`
-        *   `TimeLockWallet.json`
-        *   `TimeLockWalletFactory.json`
+Cài đặt dependencies:
+bash npm install # Các polyfill và thư viện notification (ví dụ react-toastify) đã có trong package.json # Nếu bạn dùng craco, đảm bảo @craco/craco và các polyfill liên quan đã được cài.
 
-4.  **Cập nhật Đường dẫn Import Artifact trong Code Front-end:**
-    *   Kiểm tra các file JavaScript trong `client/src/` (đặc biệt là trong `proxies/`) đang import các file ABI.
-    *   Đảm bảo đường dẫn import trỏ đúng đến vị trí mới của các file JSON (ví dụ: `import AshTokenABI from '../contracts/AshToken.json';`).
-    *   **Đặc biệt kiểm tra `client/src/proxies/Wallet.js`:** Đảm bảo nó import ABI của `TimeLockWallet` từ `../contracts/TimeLockWallet.json` chứ không phải từ `../constants`.
+Sao chép Artifacts (QUAN TRỌNG):
+Sau mỗi lần chạy truffle migrate thành công, các file JSON artifact trong thư mục build/contracts/ (ở thư mục gốc dự án) sẽ được cập nhật. Bạn cần sao chép các file sau vào thư mục client/src/contracts/:
+* AshToken.json
+* TimeLockWallet.json
+* TimeLockWalletFactory.json
+Xóa các file cũ trong client/src/contracts/ trước khi sao chép file mới để đảm bảo.
 
-5.  **Xử lý lỗi `process is not defined`:**
-    Mở file `client/src/index.js`. Thêm các dòng sau vào **ĐẦU TIÊN** của file, trước tất cả các `import` khác:
-    ```javascript
-    import process from 'process';
-    window.process = process;
+Chạy Server Phát triển Front-end:
+```bash
+# Đối với Windows PowerShell (nếu dùng Node.js > 17)
+$env:NODE_OPTIONS="--openssl-legacy-provider"
+npm start
 
-    // Các import khác (React, ReactDOM, App, ...) phải nằm SAU các dòng trên
-    import React from 'react';
-    // ...
-    ```
-    Đảm bảo tất cả các câu lệnh `import` khác nằm sau 2 dòng trên, và code thực thi (`window.process = process;`) nằm sau tất cả các `import`.
+# Hoặc nếu bạn đã sửa package.json để dùng craco và cross-env:
+  # npm start
+  ```
+  Ứng dụng sẽ thường mở ở `http://localhost:3000`.
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+IGNORE_WHEN_COPYING_END
 
-6.  **Cấu hình `NODE_OPTIONS` cho `npm start` (Khắc phục lỗi OpenSSL với Node.js mới):**
-    Sửa file `client/package.json`. Trong phần `"scripts"`, thay đổi dòng `"start"`:
-    ```json
-    "scripts": {
-      "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-      // ... các script khác
-    }
-    ```
+4. Cấu hình MetaMask:
 
-7.  **Chạy Server Phát triển Front-end:**
-    Trong terminal (đang ở thư mục `client`):
-    ```bash
-    npm start
-    ```
-    *Ứng dụng sẽ mở trong trình duyệt, thường ở `http://localhost:3000`.*
+Cài đặt MetaMask extension.
 
-### Phần 3: Cấu hình MetaMask và Tương tác
+Thêm mạng Ganache cục bộ:
+* Network Name: Ganache 1337 (ví dụ)
+* New RPC URL: http://127.0.0.1:8545
+* Chain ID: 1337 (Phải khớp với Ganache và truffle-config.js nếu bạn đặt cụ thể)
+* Currency Symbol: ETH
 
-1.  **Cài đặt và Mở MetaMask.**
-2.  **Kết nối MetaMask với Mạng Ganache Cục bộ:**
-    *   Thêm mạng mới trong MetaMask:
-        *   Network Name: `Ganache` (hoặc tên tùy chọn)
-        *   New RPC URL: `http://127.0.0.1:8545` (hoặc port Ganache của bạn)
-        *   Chain ID: Phải khớp với Chain ID của Ganache đang chạy (xem output của `truffle migrate`, ví dụ: `2025`, hoặc `5777` cho Ganache UI mặc định, `1337` cho Ganache CLI mặc định).
-        *   Currency Symbol: `ETH`
-    *   Chọn mạng Ganache này trong MetaMask.
+Kết nối MetaMask với mạng Ganache này.
 
-3.  **Import Tài khoản từ Ganache vào MetaMask:**
-    *   Lấy Private Key của một tài khoản từ Ganache (tài khoản có ETH ảo).
-    *   Trong MetaMask, chọn "Import Account" và dán Private Key vào.
-    *   Đảm bảo tài khoản này được chọn trong MetaMask và có hiển thị số dư ETH ảo.
+Import một tài khoản từ Ganache vào MetaMask (sử dụng private key). Đây sẽ là tài khoản bạn dùng để tương tác với dApp.
 
-4.  **Import `AshToken` vào MetaMask:**
-    *   Lấy địa chỉ contract của `AshToken` đã triển khai (từ output `truffle migrate`).
-    *   Trong MetaMask, vào "Assets" -> "Import tokens", dán địa chỉ contract `AshToken`. MetaMask sẽ tự điền Symbol và Decimals.
+Import AshToken vào danh sách token của MetaMask:
+1. Trong MetaMask, vào tab "Assets".
+2. Nhấp "Import tokens".
+3. Dán địa chỉ của AshToken đã triển khai (lấy từ output của truffle migrate hoặc từ file client/src/contracts/AshToken.json phần networks.<your_network_id>.address).
+4. MetaMask sẽ tự động điền "Token Symbol" (ASH) và "Token Decimal". Nhấp "Add Custom Token".
 
-5.  **Tương tác với Ứng dụng:**
-    *   Làm mới trang web front-end (`http://localhost:3000`).
-    *   Kết nối ví MetaMask với ứng dụng nếu được yêu cầu.
-    *   Thử các chức năng: Create Wallet, Topup Wallet, Claim Funds.
-    *   Xác nhận các giao dịch trong MetaMask (đảm bảo bạn đang ở mạng Ganache và phí gas hợp lý).
+Luồng Sử dụng Cơ bản
 
-## Gỡ lỗi
+Mở trình duyệt và truy cập http://localhost:3000.
 
-*   **Console Trình duyệt (F12):** Luôn kiểm tra tab "Console" để tìm lỗi JavaScript phía client.
-*   **Terminal `npm start`:** Xem output build của front-end.
-*   **Terminal `truffle migrate`:** Xem output triển khai contract.
-*   **Vấn đề Web3 Provider trong Front-end:**
-    *   Các file trong `client/src/proxies/` (ví dụ: `Provider.js`, `Token.js`, `WalletFactory.js`) sử dụng một `HttpProvider` riêng. Điều này chỉ cho phép đọc dữ liệu, không ký được giao dịch.
-    *   Để khắc phục triệt để và cho phép ký giao dịch từ các proxy này, cần tái cấu trúc để chúng sử dụng instance Web3 được kết nối qua MetaMask (ví dụ, khởi tạo ở `App.js` và truyền xuống qua props hoặc Context API). Các ví dụ sửa đổi đã được thảo luận trong quá trình gỡ lỗi. Hiện tại, các component (`Create.jsx`, `Topup.jsx`, `Claim.jsx`) có thể đang tự khởi tạo Web3 từ `window.ethereum` cho các thao tác gửi giao dịch, nhưng các proxy được import có thể không dùng chung instance đó.
+Kết nối ví MetaMask với ứng dụng khi được yêu cầu. Đảm bảo bạn đang ở đúng mạng đã cấu hình.
+
+Sử dụng trang "Create Wallet" để tạo một ví khóa thời gian mới.
+
+Sử dụng trang "Topup Wallet" để nạp thêm Ether/AshToken.
+
+Sử dụng trang "Claim Funds" để xem và rút tài sản (sau khi thời gian mở khóa đến - bạn có thể cần tua nhanh thời gian trên Ganache để test).
+
+Để Chuyển Token Ban Đầu cho Tài khoản Test (Ví dụ: MetaMask)
+
+Tài khoản triển khai AshToken (thường là accounts[0] trong Ganache) sẽ nhận 10000 ASH ban đầu. Nếu tài khoản MetaMask bạn dùng để tương tác khác với tài khoản này, bạn cần chuyển ASH sang.
+
+Cách 1: Sử dụng Script checkAndTransferTokens.js (Khuyến nghị)
+
+Chỉnh sửa địa chỉ metamaskUserAccount trong file checkAndTransferTokens.js thành địa chỉ MetaMask của bạn.
+
+Từ thư mục gốc dự án, chạy:
+
+truffle exec ./checkAndTransferTokens.js --network development
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Bash
+IGNORE_WHEN_COPYING_END
+
+Script sẽ kiểm tra và chuyển 1000 ASH nếu cần.
+
+Cách 2: Sử dụng Truffle Console
+
+truffle console --network development
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+Bash
+IGNORE_WHEN_COPYING_END
+
+Bên trong console:
+
+let token = await AshToken.deployed();
+let accounts = await web3.eth.getAccounts();
+let deployerAccount = accounts[0];
+let yourMetaMaskAccount = "ĐỊA_CHỈ_METAMASK_CỦA_BẠN";
+let amount = web3.utils.toWei("1000", "ether"); // Gửi 1000 ASH
+
+await token.transfer(yourMetaMaskAccount, amount, { from: deployerAccount });
+console.log("Transferred 1000 ASH to", yourMetaMaskAccount);
+(await token.balanceOf(yourMetaMaskAccount)).toString();
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+Tua Nhanh Thời Gian trên Ganache (Để Test Chức Năng Claim)
+
+Sử dụng Truffle Console:
+
+// Trong Truffle Console
+// Ví dụ tua nhanh 1 ngày (86400 giây)
+let secondsToIncrease = 86400; // Thay đổi số giây nếu cần
+await web3.currentProvider.send({ jsonrpc: "2.0", method: "evm_increaseTime", params: [secondsToIncrease], id: new Date().getTime() }, () => {});
+await web3.currentProvider.send({ jsonrpc: "2.0", method: "evm_mine", params: [], id: new Date().getTime() }, () => {});
+console.log(`Time on Ganache increased by ${secondsToIncrease} seconds.`);
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+Sau đó, tải lại trang "Claim Funds" trên front-end.
+
+Cấu trúc Thư mục (Sơ lược)
+time-lock-eth-wallet/
+├── build/                    # Artifacts sau khi compile (Truffle)
+├── client/                   # Code Front-end (React)
+│   ├── public/
+│   ├── src/
+│   │   ├── components/       # Các React components (Create, Topup, Claim)
+│   │   ├── contracts/        # Bản sao của các ABI JSON từ build/contracts
+│   │   ├── proxies/          # Các file khởi tạo contract instance cho front-end
+│   │   ├── utils/            # Các hàm tiện ích (ví dụ: notification)
+│   │   ├── App.js
+│   │   └── index.js
+│   ├── package.json
+│   └── craco.config.js       # (Nếu bạn đã cài đặt và sử dụng craco)
+├── contracts/                # Smart Contracts (.sol)
+├── migrations/               # Script triển khai (Truffle)
+├── node_modules/             # Dependencies của Truffle project
+├── test/                     # (Nên có thư mục test cho smart contracts)
+├── checkAndTransferTokens.js # Script ví dụ cho truffle exec
+├── package.json              # Cho Truffle project
+├── truffle-config.js
+└── README.md
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+IGNORE_WHEN_COPYING_END
+Đóng góp
+
+Nếu bạn muốn đóng góp, vui lòng fork repository và tạo một Pull Request.
+
+Giấy phép
+
+MIT (Hoặc giấy phép bạn chọn - tạo file LICENSE nếu chưa có)
+
+**Lưu ý khi sử dụng file README này:**
+
+*   **Thay thế `<URL_REPOSITORY_CUA_BAN>`** bằng URL GitHub thực tế của bạn.
+*   **Đảm bảo các đường dẫn và tên file** (ví dụ: `client/src/contracts/`, `checkAndTransferTokens.js`) khớp với cấu trúc dự án của bạn.
+*   **Phiên bản:** Các hướng dẫn về phiên bản (Node, OpenZeppelin, React) là gợi ý dựa trên quá trình gỡ lỗi của chúng ta. Nếu bạn dùng phiên bản khác, có thể cần điều chỉnh.
+*   **CRCO:** Tôi đã thêm ghi chú về `craco.config.js`. Nếu bạn không dùng `craco`, hãy bỏ qua phần đó.
+*   **LICENSE:** Hãy tạo một file `LICENSE` (ví dụ: MIT License) nếu bạn muốn công khai mã nguồn.
+
+Hy vọng file README này sẽ hữu ích!
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+IGNORE_WHEN_COPYING_END
