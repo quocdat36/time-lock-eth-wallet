@@ -1,79 +1,41 @@
 // client/src/proxies/Token.js
-import Provider from './Provider';
-import AshToken from '../contracts/AshToken.json'; // Đảm bảo đường dẫn này đúng
+// import Provider from './Provider'; // Không cần Provider nữa nếu web3 được truyền vào
+import AshTokenInfo from '../contracts/AshToken.json';
 
-console.log("[Token.js] Loaded AshToken JSON:", AshToken);
+// console.log("[Token.js] Loaded AshToken JSON:", AshTokenInfo);
 
-const provider = new Provider();
+// Hàm này sẽ được gọi từ App.js với web3 instance và networkId đã được kết nối
+const createTokenInstance = (web3, networkId) => {
+  console.log("[Token.js] createTokenInstance called with web3:", web3 ? 'Exists' : 'Missing', "networkId:", networkId);
 
-class Token {
-  constructor() {
-    const web3 = provider.web3;
-    console.log("[Token.js] Web3 instance from Provider:", web3 ? 'Exists' : 'Missing');
-
-    if (!AshToken || !AshToken.networks || !AshToken.abi) {
-      console.error("[Token.js] ERROR: AshToken JSON data is invalid or missing (networks/abi).");
-      this.instance = { methods: {}, _address: null, error: "ABI or network data missing" };
-      return;
-    }
-
-    const networkIdsInJson = Object.keys(AshToken.networks);
-    console.log("[Token.js] Available network IDs in AshToken.json:", networkIdsInJson);
-
-    // Cố gắng tìm Network ID phù hợp. CẬP NHẬT MẢNG NÀY VỚI ID GANACHE CỦA BẠN
-    const knownGanacheIds = ["2025", "5777", "1337"]; // Ví dụ: 2025 từ output migrate trước
-    let deploymentKey;
-
-    for (const id of knownGanacheIds) {
-      if (AshToken.networks[id]) {
-        deploymentKey = id;
-        console.log("[Token.js] Found known Ganache ID in AshToken.json:", deploymentKey);
-        break;
-      }
-    }
-
-    if (!deploymentKey && networkIdsInJson.length > 0) {
-      deploymentKey = networkIdsInJson[0]; // Fallback to the first key if no known ID found
-      console.warn("[Token.js] Could not find a known Ganache network ID in AshToken.json, falling back to first available key:", deploymentKey);
-    } else if (!deploymentKey) {
-      console.error("[Token.js] ERROR: No deployment networks found in AshToken.json.");
-      this.instance = { methods: {}, _address: null, error: "No deployment networks in JSON" };
-      return;
-    }
-
-    const deployedNetwork = AshToken.networks[deploymentKey];
-    console.log("[Token.js] Selected deployment network data for key '" + deploymentKey + "':", deployedNetwork);
-
-    if (!deployedNetwork || !deployedNetwork.address) {
-      console.error("[Token.js] ERROR: AshToken not deployed on selected network key '" + deploymentKey + "' or address is missing.");
-      this.instance = { methods: {}, _address: null, error: "Deployment not found on network or address missing" };
-      return;
-    }
-
-    try {
-      this.instance = new web3.eth.Contract(
-        AshToken.abi,
-        deployedNetwork.address,
-      );
-      console.log("[Token.js] AshToken contract instance created at address:", this.instance._address);
-    } catch (e) {
-      console.error("[Token.js] ERROR creating AshToken contract instance:", e);
-      this.instance = { methods: {}, _address: null, error: "Contract instantiation failed" };
-    }
+  if (!web3) {
+    console.error("[Token.js] ERROR: Web3 instance is required.");
+    return { methods: {}, _address: null, error: "Web3 instance missing" };
+  }
+  if (!AshTokenInfo || !AshTokenInfo.networks || !AshTokenInfo.abi) {
+    console.error("[Token.js] ERROR: AshToken JSON data is invalid or missing (networks/abi).");
+    return { methods: {}, _address: null, error: "ABI or network data missing" };
   }
 
-  getInstance = () => this.instance;
-}
+  const deployedNetwork = AshTokenInfo.networks[networkId]; // Sử dụng networkId được truyền vào
+  console.log("[Token.js] Selected deployment network data for key '" + networkId + "':", deployedNetwork);
 
-let tokenInstanceExport;
-try {
-  const token = new Token();
-  Object.freeze(token); // Not strictly necessary if getInstance always returns the same instance
-  tokenInstanceExport = token.getInstance();
-  console.log("[Token.js] Exporting AshToken instance:", tokenInstanceExport && tokenInstanceExport._address ? tokenInstanceExport._address : tokenInstanceExport);
-} catch (e) {
-  console.error("[Token.js] Critical error during Token class instantiation for export:", e);
-  tokenInstanceExport = { methods: {}, _address: null, error: "Critical initialization failed" };
-}
+  if (!deployedNetwork || !deployedNetwork.address) {
+    console.error("[Token.js] ERROR: AshToken not deployed on selected network key '" + networkId + "' or address is missing.");
+    return { methods: {}, _address: null, error: "Deployment not found on network or address missing" };
+  }
 
-export default tokenInstanceExport;
+  try {
+    const instance = new web3.eth.Contract(
+      AshTokenInfo.abi,
+      deployedNetwork.address,
+    );
+    console.log("[Token.js] AshToken contract instance created at address:", instance._address);
+    return instance;
+  } catch (e) {
+    console.error("[Token.js] ERROR creating AshToken contract instance:", e);
+    return { methods: {}, _address: null, error: "Contract instantiation failed" };
+  }
+};
+
+export default createTokenInstance;

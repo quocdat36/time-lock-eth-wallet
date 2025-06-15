@@ -1,31 +1,27 @@
 // client/src/proxies/Wallet.js
-import Provider from './Provider';
-import TimeLockWalletInfo from '../contracts/TimeLockWallet.json'; 
+// import Provider from './Provider'; // Không cần Provider nữa
+import TimeLockWalletInfo from '../contracts/TimeLockWallet.json';
 
-console.log("[Wallet.js] Loaded TimeLockWalletInfo JSON:", TimeLockWalletInfo); // OK
-const provider = new Provider();
-console.log("[Wallet.js] Provider instance created"); // OK
+// console.log("[Wallet.js] Loaded TimeLockWalletInfo JSON:", TimeLockWalletInfo);
 
-const Wallet = (contractAddress) => {
-  const web3 = provider.web3;
+// Hàm này sẽ được gọi từ các component con với web3 instance và địa chỉ ví clone
+const createWalletInstance = (web3, contractAddress) => {
+  // console.log("[Wallet.js] createWalletInstance called with web3:", web3 ? 'Exists' : 'Missing', "contractAddress:", contractAddress);
 
   if (!web3) {
     console.error("[Wallet.js] Web3 instance from Provider is missing.");
     return { methods: {}, error: "Web3 provider missing" };
   }
-
   if (!TimeLockWalletInfo || !TimeLockWalletInfo.abi) {
     console.error("[Wallet.js] TimeLockWallet ABI is missing or invalid from JSON.");
     return { methods: {}, error: "ABI missing or invalid" };
   }
-
-  if (!contractAddress) {
-    console.error("[Wallet.js] Attempted to create Wallet instance without a contractAddress.");
-    return { methods: {}, error: "Contract address missing" };
+  if (!contractAddress || !web3.utils.isAddress(contractAddress)) { // Kiểm tra địa chỉ hợp lệ
+    console.error("[Wallet.js] Attempted to create Wallet instance without a valid contractAddress:", contractAddress);
+    return { methods: {}, error: "Invalid or missing contract address" };
   }
 
   try {
-    // Sử dụng TimeLockWalletInfo.abi
     const walletInstance = new web3.eth.Contract(TimeLockWalletInfo.abi, contractAddress);
     // console.log("[Wallet.js] Wallet instance created for address:", contractAddress);
     return walletInstance;
@@ -35,5 +31,4 @@ const Wallet = (contractAddress) => {
   }
 };
 
-console.log("[Wallet.js] Exporting Wallet function:", typeof Wallet === 'function' ? 'Function defined' : 'Wallet is NOT a function');
-export default Wallet;
+export default createWalletInstance; // Export hàm

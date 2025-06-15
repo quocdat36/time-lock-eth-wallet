@@ -1,13 +1,26 @@
 // client/src/index.js
-import process from 'process';
+import { Buffer } from 'buffer'; // Polyfill cho Buffer
+window.Buffer = Buffer;
+
+import process from 'process';   // Polyfill cho process
+window.process = process;
+
 import React from 'react';
-import ReactDOM from 'react-dom';
-import registerServiceWorker from './serviceWorker';
+import { createRoot } from 'react-dom/client'; // API mới của React 18
 import App from './App';
 import './index.css';
-// ĐẶT TẤT CẢ CÁC IMPORT LÊN TRÊN CÙNG
+// import registerServiceWorker from './serviceWorker'; // Vẫn comment out khi debug
 
-window.process = process; // Code thực thi sau các import
+const container = document.getElementById('root');
+if (container) {
+  const root = createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+} else {
+  console.error("Fatal: Root element with ID 'root' was not found in the HTML.");
+}
 
-ReactDOM.render(<App />, document.getElementById('root')); // Hoặc <React.StrictMode><App /></React.StrictMode>
-registerServiceWorker();
+// registerServiceWorker();
